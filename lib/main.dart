@@ -19,8 +19,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: BlocProvider(
-          create: (context) => AuthBloc(AuthInitialState()),
-          child: const LoginScreen()),
+        create: (context) => AuthBloc(AuthInitialState()),
+        child: const LoginScreen(),
+      ),
     );
   }
 }

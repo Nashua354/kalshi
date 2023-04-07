@@ -36,7 +36,7 @@ class Event {
   final String title;
   final bool mutuallyExclusive;
   final String category;
-  final DateTime strikeDate;
+  final DateTime? strikeDate;
   final String strikePeriod;
 
   factory Event.fromJson(Map<String, dynamic> json) => Event(
@@ -46,8 +46,10 @@ class Event {
         title: json["title"],
         mutuallyExclusive: json["mutually_exclusive"],
         category: json["category"],
-        strikeDate: DateTime.parse(json["strike_date"]),
-        strikePeriod: json["strike_period"],
+        strikeDate: json["strike_date"] != null
+            ? DateTime.parse(json["strike_date"])
+            : null,
+        strikePeriod: json["strike_period"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -57,7 +59,7 @@ class Event {
         "title": title,
         "mutually_exclusive": mutuallyExclusive,
         "category": category,
-        "strike_date": strikeDate.toIso8601String(),
+        "strike_date": strikeDate?.toIso8601String(),
         "strike_period": strikePeriod,
       };
 }
