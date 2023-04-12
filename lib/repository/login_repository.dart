@@ -8,6 +8,7 @@ class LoginRepository {
   Future<LoginModel> login(String email, String password) async {
     var response = await ApiService()
         .post(APIUrl.login, body: {"email": email, "password": password});
+    print(response);
     return LoginModel.fromJson(json.decode(response));
   }
 }

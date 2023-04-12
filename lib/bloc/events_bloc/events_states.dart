@@ -7,8 +7,8 @@ class InitialState extends EventsState {}
 class LoadingEventState extends EventsState {}
 
 class LoadedEventState extends EventsState {
-  EventsModel events;
-  LoadedEventState(this.events);
+  EventsModel eventsData;
+  LoadedEventState(this.eventsData);
 }
 
 class FailureEventState extends EventsState {}

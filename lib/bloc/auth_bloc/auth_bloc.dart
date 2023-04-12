@@ -14,7 +14,6 @@ class AuthBloc extends Bloc<AuthEvents, AuthStates> {
     emit(LoginLoadingState());
 
     var response = await LoginRepository().login(event.email, event.password);
-    print(response);
     emit(LoginSuccessState());
   }
 }

@@ -3,6 +3,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kalshi/bloc/events_bloc/events_bloc.dart';
+import 'package:kalshi/bloc/markets_bloc/markets_bloc.dart';
+import 'package:kalshi/models/events_model.dart';
+import 'package:kalshi/screens/markets_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -12,6 +15,7 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  List<Event> searchedEvents = [];
   @override
   void initState() {
     super.initState();
@@ -27,11 +31,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
           builder: (context, state) {
             print(state);
             if (state is LoadedEventState) {
+              searchedEvents = state.eventsData.events;
               return ListView.builder(
-                  itemCount: state.events.events.length,
+                  shrinkWrap: true,
+                  itemCount: searchedEvents.length,
                   itemBuilder: ((context, index) {
-                    return ListTile(
-                      title: Text(state.events.events[index].title),
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => BlocProvider(
+                                create: (context) =>
+                                    MarketsBloc(InitialMarketsState()),
+                                child: MarketsScreen(
+                                    searchedEvents[index].seriesTicker))));
+                      },
+                      child: Card(
+                        child: Text(searchedEvents[index].title),
+                      ),
                     );
                   }));
             } else if (state is LoadingEventState) {
