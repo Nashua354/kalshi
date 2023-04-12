@@ -7,8 +7,8 @@ class InitialMarketsState extends MarketsState {}
 class LoadingMarketState extends MarketsState {}
 
 class LoadedMarketState extends MarketsState {
-  MarketsModel markets;
-  LoadedMarketState(this.markets);
+  MarketsModel marketsData;
+  LoadedMarketState(this.marketsData);
 }
 
 class FailureMarketState extends MarketsState {}

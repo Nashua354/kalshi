@@ -17,7 +17,6 @@ class MarketsBloc extends Bloc<MarketsEvents, MarketsState> {
     emit(LoadingMarketState());
 
     var response = await MarketsRepository().fetchMarkets(event.seriesTicker);
-
     emit(LoadedMarketState(response));
   }
 }

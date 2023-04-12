@@ -25,19 +25,27 @@ class _MarketsScreenState extends State<MarketsScreen> {
       body: BlocBuilder(
         bloc: context.read<MarketsBloc>(),
         builder: (context, state) {
-          if (state is LoadedMarketState) {
+          print(state);
+          if (state is LoadingMarketState) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is LoadedMarketState) {
             return ListView.builder(
                 shrinkWrap: true,
-                itemCount: state.markets.markets.length,
+                itemCount: state.marketsData.markets.length,
                 itemBuilder: ((context, index) {
                   return Card(
-                    child: Text(state.markets.markets[index].title),
+                    child: Column(
+                      children: [
+                        Text(state.marketsData.markets[index].title),
+                        Text(
+                            "Yes : ${state.marketsData.markets[index].yesAsk}"),
+                        Text("No : ${state.marketsData.markets[index].noAsk}")
+                      ],
+                    ),
                   );
                 }));
           } else {
-            return const Text("Error");
+            return Container();
           }
         },
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kalshi/constants/api_urls.dart';
 import 'package:kalshi/repository/login_repository.dart';
 part 'auth_events.dart';
 part 'auth_states.dart';
@@ -14,6 +15,8 @@ class AuthBloc extends Bloc<AuthEvents, AuthStates> {
     emit(LoginLoadingState());
 
     var response = await LoginRepository().login(event.email, event.password);
+    token = response.token;
+    print(token);
     emit(LoginSuccessState());
   }
 }

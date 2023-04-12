@@ -7,14 +7,14 @@ import 'package:kalshi/bloc/markets_bloc/markets_bloc.dart';
 import 'package:kalshi/models/events_model.dart';
 import 'package:kalshi/screens/markets_screen.dart';
 
-class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({super.key});
+class ExploreScreen extends StatefulWidget {
+  const ExploreScreen({super.key});
 
   @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
+  State<ExploreScreen> createState() => _ExploreScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class _ExploreScreenState extends State<ExploreScreen> {
   List<Event> searchedEvents = [];
   @override
   void initState() {

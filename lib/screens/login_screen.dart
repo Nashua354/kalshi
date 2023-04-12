@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kalshi/bloc/auth_bloc/auth_bloc.dart';
 import 'package:kalshi/bloc/events_bloc/events_bloc.dart';
-import 'package:kalshi/screens/dashboard_screen.dart';
+import 'package:kalshi/screens/explore_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -18,7 +18,7 @@ class LoginScreen extends StatelessWidget {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (_) => BlocProvider(
                       create: (context) => EventsBloc(InitialState()),
-                      child: const DashboardScreen())));
+                      child: const ExploreScreen())));
             }
           },
           child: Center(
