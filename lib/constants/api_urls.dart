@@ -3,7 +3,7 @@ class APIUrl {
   static String login = "$baseUrl/login";
   static String fetchEvents = "$baseUrl/events?status=open";
   static String fetchMarkets(String seriesTicker) =>
-      "$baseUrl/markets?series_ticker=$seriesTicker";
+      "$baseUrl/markets?status=open&series_ticker=$seriesTicker";
+  static String fetchPositions = "$baseUrl/portfolio/positions";
+  static String fetchBalance = "$baseUrl/portfolio/balance";
 }
-
-String token = "";

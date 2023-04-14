@@ -2,7 +2,7 @@ part of 'events_bloc.dart';
 
 abstract class EventsState {}
 
-class InitialState extends EventsState {}
+class InitialEventState extends EventsState {}
 
 class LoadingEventState extends EventsState {}
 
