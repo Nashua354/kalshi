@@ -4,6 +4,5 @@ class GlobalInstance {
   factory GlobalInstance() {
     return _globalInstance;
   }
-  String token = "";
   GlobalInstance._internal();
 }

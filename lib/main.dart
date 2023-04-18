@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kalshi/bloc/auth_bloc/auth_bloc.dart';
-import 'package:kalshi/screens/login_screen.dart';
+import 'package:kalshi/screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider(
         create: (context) => AuthBloc(AuthInitialState()),
-        child: const LoginScreen(),
+        child: const SplashScreen(),
       ),
     );
   }

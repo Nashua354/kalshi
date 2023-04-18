@@ -6,4 +6,5 @@ class APIUrl {
       "$baseUrl/markets?status=open&series_ticker=$seriesTicker";
   static String fetchPositions = "$baseUrl/portfolio/positions";
   static String fetchBalance = "$baseUrl/portfolio/balance";
+  static String createOrder = "$baseUrl/portfolio/orders";
 }

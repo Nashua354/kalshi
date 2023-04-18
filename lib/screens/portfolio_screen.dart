@@ -35,55 +35,58 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
       builder: (context, state) {
         print(state);
         if (state is LoadedPositionState) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "Balance",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    BlocBuilder(
-                        bloc: context.read<BalanceBloc>(),
-                        builder: (context, state) {
-                          if (state is LoadedBalanceState) {
-                            return Text("\$${state.data.balance / 100}");
-                          }
-                          return Container();
-                        })
-                  ],
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Balance",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      BlocBuilder(
+                          bloc: context.read<BalanceBloc>(),
+                          builder: (context, state) {
+                            if (state is LoadedBalanceState) {
+                              return Text("\$${state.data.balance / 100}");
+                            }
+                            return Container();
+                          })
+                    ],
+                  ),
                 ),
-              ),
-              const Divider(
-                thickness: 2,
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.0),
-                child: Text(
-                  "My positions",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                const Divider(
+                  thickness: 2,
                 ),
-              ),
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: state.positionsData.eventPositions.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(
-                        state.positionsData.eventPositions[index].eventTicker),
-                    subtitle: Text(
-                        "Total Cost \$${state.positionsData.eventPositions[index].totalCost / 100}"),
-                    trailing: Text(
-                        "P/L \$${state.positionsData.eventPositions[index].realizedPnl / 100}"),
-                  );
-                },
-              ),
-            ],
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Text(
+                    "My positions",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: state.positionsData.eventPositions.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(state
+                          .positionsData.eventPositions[index].eventTicker),
+                      subtitle: Text(
+                          "Total Cost \$${state.positionsData.eventPositions[index].totalCost / 100}"),
+                      trailing: Text(
+                          "P/L \$${state.positionsData.eventPositions[index].realizedPnl / 100}"),
+                    );
+                  },
+                ),
+              ],
+            ),
           );
         } else if (state is LoadingPositionState) {
           return const Center(

@@ -7,3 +7,5 @@ class LoginRequested extends AuthEvents {
   String password;
   LoginRequested(this.email, this.password);
 }
+
+class IsUserLoggedIn extends AuthEvents {}

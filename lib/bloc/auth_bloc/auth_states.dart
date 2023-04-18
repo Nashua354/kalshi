@@ -2,10 +2,18 @@ part of 'auth_bloc.dart';
 
 abstract class AuthStates {}
 
-class AuthInitialState extends AuthStates {}
+abstract class AuthAPIState extends AuthStates {}
 
-class LoginLoadingState extends AuthStates {}
+abstract class AuthStatusState extends AuthStates {}
 
-class LoginSuccessState extends AuthStates {}
+class AuthInitialState extends AuthAPIState {}
 
-class LoginFailureState extends AuthStates {}
+class LoginLoadingState extends AuthAPIState {}
+
+class LoginSuccessState extends AuthAPIState {}
+
+class LoginFailureState extends AuthAPIState {}
+
+class NewUserLogInState extends AuthStatusState {}
+
+class UserAlreadyLoggedInState extends AuthStatusState {}

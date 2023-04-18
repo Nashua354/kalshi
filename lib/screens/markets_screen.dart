@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kalshi/bloc/orders_bloc/orders_bloc.dart';
 import 'package:kalshi/constants/colors.dart';
 import 'package:kalshi/screens/review_order_screen.dart';
 
@@ -78,9 +79,13 @@ class _MarketsScreenState extends State<MarketsScreen> {
                               GestureDetector(
                                 onTap: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (_) => ReviewOrderScreen(
-                                          marketData: state
-                                              .marketsData.markets[index])));
+                                      builder: (_) => BlocProvider(
+                                            create: (context) =>
+                                                OrdersBloc(InitialOrderState()),
+                                            child: ReviewOrderScreen(
+                                                marketData: state.marketsData
+                                                    .markets[index]),
+                                          )));
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.all(5),
