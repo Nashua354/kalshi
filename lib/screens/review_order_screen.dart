@@ -199,7 +199,7 @@ class _ReviewOrderScreenState extends State<ReviewOrderScreen> {
             onTap: () {
               context.read<OrdersBloc>().add(CreateLimitOrder(
                   contractAmount.toInt(),
-                  (total * 100).toInt(),
+                  (limitPrice).toInt(),
                   isSelectedDirectionYes ? "yes" : "no",
                   widget.marketData.ticker));
             },
